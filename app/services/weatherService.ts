@@ -4,12 +4,9 @@ const API_KEY = "e99972ad202fbf3e8491e085b1564510";
 
 export async function getWeatherData(city = "london"): Promise<WeatherData> {
   try {
-    const res = await fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch weather data");
